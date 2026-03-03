@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Alert | Sarkari Result, Online Update & Cyber Services</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS VARIABLES FOR BRANDING */
+        :root {
+            --primary-red: #d90429;
+            --dark-blue: #2b2d42;
+            --accent-blue: #00b4d8;
+            --bg-gray: #f4f7f6;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background-color: var(--bg-gray); color: #333; overflow-x: hidden; }
+
+        /* TOP BAR (Online Update STM Style) */
+        .top-header {
+            background: var(--primary-red);
+            color: white;
+            padding: 8px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* MAIN NAV (Sarkari Result Style) */
+        header {
+            background: var(--dark-blue);
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--accent-blue); }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 15px; }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { background: rgba(255,255,255,0.1); }
+
+        /* TICKER/MARQUEE SECTION */
+        .ticker-container {
+            background: #fff;
+            border-bottom: 2px solid var(--primary-red);
+            display: flex;
+            align-items: center;
+        }
+        .ticker-label {
+            background: var(--primary-red);
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        marquee { font-weight: 600; color: var(--primary-red); }
+
+        /* HERO SECTION (Umesh Talks Style) */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        /* MAIN 3D GRID SYSTEM */
+        .main-wrapper {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .grid-section-title {
+            background: var(--dark-blue);
+            color: white;
+            padding: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 1.4rem;
+        }
+
+        .job-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        /* THE 3D HOVER CARD */
+        .card-3d {
+            background: var(--white);
+            border: 1px solid #ddd;
+            border-top: 4px solid var(--primary-red);
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 400px;
+            transition: transform 0.1s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .card-inner {
+            transform: translateZ(50px); /* Lifts content off the card */
+        }
+
+        .card-3d h2 {
+            font-size: 1.2rem;
+            color: var(--primary-red);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card-3d ul { list-style: none; }
+        .card-3d ul li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .card-3d ul li a {
+            text-decoration: none;
+            color: #444;
+            font-size: 0.9rem;
+            display: block;
+        }
+        .card-3d ul li a:hover { color: var(--accent-blue); padding-left: 5px; transition: 0.2s; }
+        
+        .view-more {
+            display: block;
+            text-align: right;
+            margin-top: 15px;
+            color: var(--primary-red);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* FEATURE ICONS BAR */
+        .icon-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .icon-box {
+            background: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .icon-box:hover { background: var(--accent-blue); color: white; transform: translateY(-10px); }
+        .icon-box i { font-size: 2rem; margin-bottom: 10px; }
+
+        /* WHATSAPP FLOAT */
+        .wa-float {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: #25d366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            z-index: 9999;
+            text-decoration: none;
+        }
+
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 60px 5% 20px;
+            margin-top: 50px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        @media (max-width: 992px) {
+            .job-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .job-grid { grid-template-columns: 1fr; }
+            .nav-container { flex-direction: column; }
+            nav ul { margin-top: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <div>Follow us: <i class="fab fa-youtube"></i> <i class="fab fa-telegram"></i></div>
+        <div>Email: contact@onlinealert.in</div>
+    </div>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Online<span>Alert.in</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Latest Jobs</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="#">Admit Card</a></li>
+                    <li><a href="#">Scholarship</a></li>
+                    <li><a href="#">Answer Key</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="ticker-container">
+        <div class="ticker-label">LATEST UPDATES</div>
+        <marquee behavior="scroll" direction="left">
+            🔥 Bihar Graduation Scholarship 2024 Apply Online -- SSC GD Constable Result Out -- Bihar Civil Court Admit Card Link Active -- PM Kisan 17th Installment Date -- for more information message on whatsapp
+        </marquee>
+    </div>
+
+    <section class="hero">
+        <h1>ALL CYBER SERVICES IN ONE PLACE</h1>
+        <p>Job Alerts, Scholarships, Admit Cards & Online Applications</p>
+    </section>
+
+    <div class="main-wrapper">
+        
+        <div class="icon-bar">
+            <div class="icon-box">
+                <i class="fas fa-user-graduate"></i>
+                <p>Scholarship</p>
+            </div>
+            <div class="icon-box">
+                <i class="fas fa-file-invoice"></i>
+                <p>Admit Card</p>
+            </div>
+            <div class="icon-box">
+                <i class="fas fa-briefcase"></i>
+                <p>Latest Jobs</p>
+            </div>
+            <div class="icon-box">
+                <i class="fas fa-university"></i>
+                <p>Admission</p>
+            </div>
+            <div class="icon-box">
+                <i class="fas fa-id-card"></i>
+                <p>Aadhar/PAN</p>
+            </div>
+            <div class="icon-box">
+                <i class="fas fa-rupee-sign"></i>
+                <p>Sarkari Yojana</p>
+            </div>
+        </div>
+
+        <div class="grid-section-title">EXCLUSIVE UPDATES</div>
+
+        <div class="job-grid">
+            
+            <div class="card-3d">
+                <div class="card-inner">
+                    <h2><i class="fas fa-poll"></i> RESULTS</h2>
+                    <ul>
+                        <li><a href="#">NTA JEE Main Phase II Result 2024</a></li>
+                        <li><a href="#">Bihar Board 10th/12th Scrutiny Result</a></li>
+                        <li><a href="#">SSC CGL 2023 Tier II Final Result</a></li>
+                        <li><a href="#">UP Police Constable Exam Result</a></li>
+                        <li><a href="#">Railway RRB ALP Stage 1 Result</a></li>
+                        <li><a href="#">IBPS PO Mains Score Card 2024</a></li>
+                        <li><a href="#">Navy SSR/MR Final Merit List</a></li>
+                        <li><a href="#">UGC NET June Cycle Result</a></li>
+                    </ul>
+                    <a href="#" class="view-more">View All Results >></a>
+                </div>
+            </div>
+
+            <div class="card-3d">
+                <div class="card-inner">
+                    <h2><i class="fas fa-ticket-alt"></i> ADMIT CARD</h2>
+                    <ul>
+                        <li><a href="#">UPSC Civil Services Prelims Admit Card</a></li>
+                        <li><a href="#">CTET July 2024 Hall Ticket</a></li>
+                        <li><a href="#">Bihar B.Ed Entrance Admit Card</a></li>
+                        <li><a href="#">SSC CHSL Tier 1 Admit Card 2024</a></li>
+                        <li><a href="#">CUET UG Admit Card Link</a></li>
+                        <li><a href="#">Bihar Civil Court Peon Admit Card</a></li>
+                        <li><a href="#">SBI Clerk Mains Call Letter</a></li>
+                        <li><a href="#">Airforce Phase 2 Admit Card</a></li>
+                    </ul>
+                    <a href="#" class="view-more">View All Admit Cards >></a>
+                </div>
+            </div>
+
+            <div class="card-3d">
+                <div class="card-inner">
+                    <h2><i class="fas fa-briefcase"></i> LATEST JOBS</h2>
+                    <ul>
+                        <li><a href="#">Bihar Vidhan Sabha Security Guard Online Form</a></li>
+                        <li><a href="#">SSC MTS Recruitment 2024 (8000+ Posts)</a></li>
+                        <li><a href="#">India Post GDS Online Form 2024</a></li>
+                        <li><a href="#">UPSSSC Junior Assistant Vacancy</a></li>
+                        <li><a href="#">Banking IBPS RRB XIII Online Form</a></li>
+                        <li><a href="#">Bihar Police Constable New Exam Date</a></li>
+                        <li><a href="#">Railway RPF SI & Constable Apply</a></li>
+                        <li><a href="#">High Court Stenographer Recruitment</a></li>
+                    </ul>
+                    <a href="#" class="view-more">View All Jobs >></a>
+                </div>
+            </div>
+
+            <div class="card-3d">
+                <div class="card-inner">
+                    <h2><i class="fas fa-university"></i> ADMISSION</h2>
+                    <ul>
+                        <li><a href="#">Bihar Graduation (BA/BSc) Admission 2024</a></li>
+                        <li><a href="#">IGNOU Fresh Admission July Cycle</a></li>
+                        <li><a href="#">Delhi University UG/PG Registration</a></li>
+                        <li><a href="#">ITI Bihar Counseling Process</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-3d">
+                <div class="card-inner">
+                    <h2><i class="fas fa-graduation-cap"></i> SCHOLARSHIP</h2>
+                    <ul>
+                        <li><a href="#">NSP National Scholarship Portal 2024</a></li>
+                        <li><a href="#">Bihar Post Matric Scholarship (BC/EBC)</a></li>
+                        <li><a href="#">Medhasoft 10th Pass Scholarship Link</a></li>
+                        <li><a href="#">Reliance Foundation Scholarship Apply</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card-3d">
+                <div class="card-inner">
+                    <h2><i class="fas fa-info-circle"></i> IMPORTANT</h2>
+                    <ul>
+                        <li><a href="#">Link Aadhar with PAN Card (New Rule)</a></li>
+                        <li><a href="#">Voter ID Card Online Correction</a></li>
+                        <li><a href="#">Ayushman Card List 2024 Download</a></li>
+                        <li><a href="#">E-Shram Card Benefits & Registration</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <a href="https://wa.me/7631214680" class="wa-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3>About Online Alert</h3>
+                <p>Online Alert is India's leading portal for Sarkari Result, Latest Jobs, and Admission updates. We follow the footsteps of Umesh Talks and Online Update STM to provide real-time data.</p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <p>Sarkari Result | Bihar Help | Online Update STM | Umesh Talks | Job Rasta</p>
+            </div>
+            <div>
+                <h3>Contact</h3>
+                <p>Support: help@onlinealert.in</p>
+                <p>Location: Bihar India</p>
+            </div>
+        </div>
+        <hr style="margin-top: 30px; opacity: 0.2;">
+        <p style="text-align: center; margin-top: 20px;">© 2026 OnlineAlert.in - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const cards = document.querySelectorAll('.card-3d');
+        
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (centerY - y) / 10;
+                const rotateY = (x - centerX) / 10;
+                
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+    </script>
+</body>
+</html>
